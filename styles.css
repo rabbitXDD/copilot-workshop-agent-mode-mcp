@@ -1,0 +1,224 @@
+:root {
+  --bg-color: #f3f6fb;
+  --card-color: #ffffff;
+  --primary-color: #4f7cff;
+  --primary-dark: #325fe0;
+  --text-color: #1f2937;
+  --muted-color: #6b7280;
+  --placeholder-color: #9ca3af;
+  --border-color: #e5e7eb;
+  --shadow-color: rgba(31, 41, 55, 0.08);
+  --danger-color: #ef4444;
+  --completed-color: #9ca3af;
+  --completed-bg: #f3f4f6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  font-family: "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  background: linear-gradient(180deg, #f8faff 0%, var(--bg-color) 100%);
+  color: var(--text-color);
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px 16px;
+}
+
+.app {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.todo-card {
+  width: min(100%, 520px);
+  background: var(--card-color);
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 12px 30px var(--shadow-color);
+  padding: 24px 20px 18px;
+}
+
+.todo-header {
+  margin-bottom: 20px;
+}
+
+.todo-header h1 {
+  margin: 0;
+  font-size: clamp(1.6rem, 2vw, 2.1rem);
+  text-align: center;
+  color: var(--text-color);
+}
+
+.todo-input-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.todo-input-row input {
+  flex: 1;
+  height: 48px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0 14px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.todo-input-row input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(79, 124, 255, 0.12);
+}
+
+.todo-input-row input::placeholder {
+  color: var(--placeholder-color);
+}
+
+.todo-input-row button {
+  border: none;
+  border-radius: 12px;
+  background: var(--primary-color);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0 18px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.todo-input-row button:hover {
+  background: var(--primary-dark);
+}
+
+.todo-input-row button:active {
+  transform: translateY(1px);
+}
+
+.todo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-height: 80px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 12px 10px;
+  margin-bottom: 10px;
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.todo-item.completed {
+  background: var(--completed-bg);
+  opacity: 0.75;
+}
+
+.todo-item-main {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 10px;
+  min-width: 0;
+}
+
+.todo-item-main input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-color);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.todo-text {
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.todo-item.completed .todo-text {
+  color: var(--completed-color);
+  text-decoration: line-through;
+}
+
+.delete-btn {
+  border: none;
+  background: transparent;
+  color: var(--danger-color);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.delete-btn:hover {
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80px;
+  color: var(--muted-color);
+  text-align: center;
+  background: #f8fafc;
+  border: 1px dashed var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.todo-footer {
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-color);
+  text-align: right;
+  color: var(--muted-color);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 480px) {
+  .todo-card {
+    padding: 20px 14px 16px;
+    border-radius: 16px;
+  }
+
+  .todo-input-row {
+    flex-direction: column;
+  }
+
+  .todo-input-row button {
+    height: 48px;
+  }
+
+  .todo-item {
+    align-items: flex-start;
+  }
+
+  .delete-btn {
+    align-self: center;
+  }
+}
