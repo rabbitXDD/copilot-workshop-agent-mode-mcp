@@ -122,9 +122,9 @@ function getVisibleTodos() {
 function getEmptyMessage() {
   switch (currentFilter) {
     case 'active':
-      return '目前沒有未完成的待辦事項';
+      return '目前沒有未完成的待辦事項，項目只是被篩選條件過濾掉，並未刪除。';
     case 'completed':
-      return '目前沒有已完成的待辦事項';
+      return '目前沒有已完成的待辦事項，項目只是被篩選條件過濾掉，並未刪除。';
     case 'all':
     default:
       return '還沒有任何待辦事項，新增一個吧！';
