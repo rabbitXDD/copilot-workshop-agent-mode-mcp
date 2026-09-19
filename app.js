@@ -7,6 +7,7 @@ const todoInput = document.getElementById('todoInput');
 const addBtn = document.getElementById('addBtn');
 const todoList = document.getElementById('todoList');
 const remainingCount = document.getElementById('remainingCount');
+const clearCompletedBtn = document.getElementById('clearCompletedBtn');
 const themeToggle = document.getElementById('themeToggle');
 const filterButtons = Array.from(document.querySelectorAll('.filter-btn'));
 
@@ -143,7 +144,30 @@ function updateFilterButtons() {
 // 計算未完成項目數量，並更新底部顯示文字
 function updateRemainingCount() {
   const remaining = todos.filter((todo) => !todo.completed).length;
+  const completedCount = todos.filter((todo) => todo.completed).length;
+
   remainingCount.textContent = `未完成: ${remaining} 項`;
+  clearCompletedBtn.disabled = completedCount === 0;
+  clearCompletedBtn.style.display = completedCount === 0 ? 'none' : 'inline-flex';
+}
+
+// 清除所有已完成項目
+function clearCompletedTodos() {
+  const completedCount = todos.filter((todo) => todo.completed).length;
+
+  if (completedCount === 0) {
+    return;
+  }
+
+  const confirmed = window.confirm('確定要清除所有已完成項目嗎？');
+
+  if (!confirmed) {
+    return;
+  }
+
+  todos = todos.filter((todo) => !todo.completed);
+  saveTodos();
+  renderTodos();
 }
 
 // 渲染待辦列表
@@ -237,6 +261,9 @@ function deleteTodo(id) {
 
 // 監聽主題切換按鈕
 themeToggle.addEventListener('click', toggleTheme);
+
+// 監聽清除已完成按鈕
+clearCompletedBtn.addEventListener('click', clearCompletedTodos);
 
 // 監聽篩選按鈕
 filterButtons.forEach((button) => {
